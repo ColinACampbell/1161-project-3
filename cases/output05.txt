@@ -1,0 +1,35 @@
+======================================
+Pro1[$10000] planning a party with 20 people on day 1
+Didn't work out
+--------------------------------------
+======================================
+Pro1[$10000] planning a party with 200 people on day 2
+Didn't work out
+--------------------------------------
+======================================
+Pro1[$10000] planning a training event with 10 people on day 3
+Didn't work out
+--------------------------------------
+======================================
+Pro1[$10000] planning a sports event with 20 competitors and 10 others on day 4
+Didn't work out
+--------------------------------------
+======================================
+Pro1[$10000] planning a party with 20 people on day 2
+Didn't work out
+--------------------------------------
+======================================
+Pro1[$10000] planning a party with 200 people on day 3
+Didn't work out
+--------------------------------------
+======================================
+Pro1[$10000] planning a training event with 10 people on day 4
+Didn't work out
+--------------------------------------
+======================================
+Pro1[$10000] planning a sports event with 20 competitors and 10 others on day 5
+Didn't work out
+--------------------------------------
+EVENTS AT VEN_BIG
+===================
+--------------------

@@ -1,0 +1,3 @@
+/Users/colincampbell/Desktop/AppProjects/uwi/comp1161/Project2/src/com/colin
+/Users/colincampbell/Desktop/AppProjects/uwi/comp1161/Project2/cases
+/Users/colincampbell/Desktop/AppProjects/uwi/comp1161/Project2/src/com/colin/javadoc
