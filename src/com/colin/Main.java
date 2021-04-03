@@ -11,8 +11,5 @@ public class Main {
         PromoterScreen promoterScreen = new PromoterScreen();
         // Show the promoter screen
         promoterScreen.setVisible(true);
-        promoterScreen.setLayout(new GridBagLayout());
-        JButton button = new JButton("hi");
-        promoterScreen.add(button);
     }
 }
