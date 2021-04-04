@@ -18,14 +18,6 @@ public class HomeScreen extends JFrame {
         gridLayout.setRows(2);
         gridLayout.setColumns(2);
 
-
-        JPanel editPromoterPanel = new JPanel();
-        editPromoterPanel.add(new JLabel("Edit Promoters"));
-        JPanel deletePromoterPanel = new JPanel();
-        deletePromoterPanel.add(new JLabel("Delete Promoters"));
-        JPanel createPromoterPanel = new JPanel();
-        createPromoterPanel.add(new JLabel("Create Promoters"));
-
         JPanel[] appPanels = {createFeaturePanel("View Promoters","undraw_online_gallery_dmv3"),
                 createFeaturePanel("Create Promoters","undraw_Create_re_57a3"),
                 createFeaturePanel("Update Promoter","undraw_update_uxn2"),
@@ -36,9 +28,8 @@ public class HomeScreen extends JFrame {
         for (JPanel panel : appPanels)
             add(panel);
 
+
         setVisible(true);
-
-
     }
 
 
@@ -52,7 +43,6 @@ public class HomeScreen extends JFrame {
             JLabel textImage = new JLabel(new ImageIcon(scaledImage));
             viewPromoterPanel.add(textImage);
             JButton button = new JButton(btnText);
-            button.setSize(200,50);
             button.setBounds(500,500,100,100);
             viewPromoterPanel.add(button);
 
@@ -63,7 +53,7 @@ public class HomeScreen extends JFrame {
             viewPromoterPanel.setLayout(gridLayout);
             viewPromoterPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
             viewPromoterPanel.setAlignmentY(JComponent.CENTER_ALIGNMENT);
-            viewPromoterPanel.setBorder(new EmptyBorder(10,10,10,10));
+            viewPromoterPanel.setBorder(new EmptyBorder(50,50,50,50));
         } catch (IOException e)
         {
             e.printStackTrace();
