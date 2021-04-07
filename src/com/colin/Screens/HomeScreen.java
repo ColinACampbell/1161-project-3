@@ -33,12 +33,12 @@ public class HomeScreen extends JFrame {
     }
 
 
-    JPanel createFeaturePanel(String btnText, String imagePath)
+    JPanel createFeaturePanel(String btnText, String imageName)
     {
         JPanel viewPromoterPanel = new JPanel();
         try
         {
-            BufferedImage image = ImageIO.read(new File("./Assets/"+imagePath+".png"));
+            BufferedImage image = ImageIO.read(new File("./Assets/"+imageName+".png"));
             Image scaledImage = image.getScaledInstance(156,144,Image.SCALE_SMOOTH);
             JLabel textImage = new JLabel(new ImageIcon(scaledImage));
             viewPromoterPanel.add(textImage);
