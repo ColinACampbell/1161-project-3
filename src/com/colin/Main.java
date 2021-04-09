@@ -1,15 +1,11 @@
 package com.colin;
 
 import com.colin.Screens.ListPromotersScreen;
-import com.colin.Screens.ListPromotersScreen1;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class Main {
 
     public static void main(String[] args) {
-        ListPromotersScreen1 screen = new ListPromotersScreen1();
+        ListPromotersScreen screen = new ListPromotersScreen();
 
         /**
          * DefaultTableModel tableModel = new DefaultTableModel();
