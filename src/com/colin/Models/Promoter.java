@@ -9,6 +9,8 @@ import java.util.Scanner;
  */
 public class Promoter  implements Comparable<Promoter>{
 	private String name;
+	private String phone1;
+	private String emailAddress;
 	private double budget;
 	private Ministry min;
 	///
@@ -18,7 +20,7 @@ public class Promoter  implements Comparable<Promoter>{
 	private ArrayList<Event> approvedEvents = new ArrayList<Event>();
 	private ArrayList<Plan> plannedEvents = new ArrayList<Plan>();
 	
-	public Promoter (String name, double budget, Ministry min, ArrayList<Venue> venues) {
+	public Promoter (String name,double budget, Ministry min, ArrayList<Venue> venues) {
 
 		this.name = name;
 		this.budget = budget;

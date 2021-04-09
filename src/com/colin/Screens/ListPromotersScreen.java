@@ -59,35 +59,6 @@ public class ListPromotersScreen extends JFrame {
         setVisible(true);
     }
 
-
-
-    private void sum()
-    {
-        JPanel panel = new JPanel();
-        DefaultTableModel tableModel = new DefaultTableModel();
-        JTable table = new JTable(tableModel);
-
-        tableModel.addColumn("Languages");
-        tableModel.insertRow(0, new Object[] { "CSS" });
-        tableModel.insertRow(0, new Object[] { "HTML5" });
-        tableModel.insertRow(0, new Object[] { "JavaScript" });
-        tableModel.insertRow(0, new Object[] { "jQuery" });
-        tableModel.insertRow(0, new Object[] { "AngularJS" });
-        tableModel.insertRow(tableModel.getRowCount(), new Object[] { "ExpressJS" });
-
-        setSize(1080, 720);
-        topBar.setSize(new Dimension(1080,10));
-        topBar.add(backButton);
-        BoxLayout layout = new BoxLayout(panel,BoxLayout.Y_AXIS);
-        panel.setLayout(layout);
-        panel.add(topBar);
-        panel.add(new JScrollPane(table));
-
-        add(panel);
-        setVisible(true);
-        System.out.println("Hello World");
-    }
-
     /**
      * @param containers List of Containers to add to the top panel of the screen
      * @return A JPanel that contains the widgets for the top screen

@@ -151,9 +151,7 @@ public class WorkArea {
         }
   
 	}
-	
-	
-	
+
 	public void loadData(int caseNo)
 	{
 		clearData();
