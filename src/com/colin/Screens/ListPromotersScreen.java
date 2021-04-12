@@ -8,14 +8,20 @@ import java.awt.*;
 
 public class ListPromotersScreen extends JFrame {
 
+
+    private JPanel content = new JPanel();
+    private JScrollPane jScrollPane = new JScrollPane();
+    private JPanel topBar = new JPanel();
+
     private JButton backButton = new JButton("<---");
     private JButton sortByIDButton = new JButton("Sort By ID");
     private JButton sortByBudgetButton = new JButton("Sort By Budget");
+    private JButton searchByIDButton = new JButton("Search By ID");
     private JTextField searchByIDField = new JFormattedTextField();
-    private JTable listPromotersTable = new JTable();
 
     public ListPromotersScreen()
     {
+
         searchByIDField.setColumns(20);
 
         setTitle("Promoter");
@@ -27,34 +33,31 @@ public class ListPromotersScreen extends JFrame {
 
         // Methods are used to short hand setting up and creating components to reduce repeating code
         JPanel leftFloatPanel = createFloatPanel(FlowLayout.LEFT,backButton);
-        JPanel rightFloatPanel = createFloatPanel(FlowLayout.RIGHT,searchByIDField,sortByBudgetButton,sortByBudgetButton);
+        JPanel rightFloatPanel = createFloatPanel(FlowLayout.RIGHT,searchByIDField,searchByIDButton,sortByIDButton,sortByBudgetButton);
         JPanel topBarComponents = createTopBarPanel(leftFloatPanel,rightFloatPanel);
 
         // Add to the top of the screen
         add(topBarComponents,BorderLayout.PAGE_START);
 
         // Now set up the table
+        DefaultTableModel tableModel = new DefaultTableModel();
+        JTable table = new JTable(tableModel);
 
-        Object[] row = { "1", "Colin", "5000" };
-        Object[][] data = {row};
+        tableModel.addColumn("Languages");
+        tableModel.insertRow(0, new Object[] { "CSS" });
+        tableModel.insertRow(0, new Object[] { "HTML5" });
+        tableModel.insertRow(0, new Object[] { "JavaScript" });
+        tableModel.insertRow(0, new Object[] { "jQuery" });
+        tableModel.insertRow(0, new Object[] { "AngularJS" });
+        tableModel.insertRow(tableModel.getRowCount(), new Object[] { "ExpressJS" });
 
-        DefaultTableModel tableModel = new DefaultTableModel(data,new String[]{"Promoter ID","Promoter Name","Promoter Budget"});
-
-        listPromotersTable.setModel(tableModel);
-        listPromotersTable.setPreferredSize(new Dimension(1000,500));
-
-        JScrollPane jScrollPane = new JScrollPane();
-
-        jScrollPane.add(listPromotersTable);
-        jScrollPane.setPreferredSize(new Dimension(1000,500));
+        //jScrollPane.add(table);
+        //jScrollPane.setPreferredSize(new Dimension(1000,500));
         // Add to the bottom of the screen
-        add(jScrollPane,BorderLayout.PAGE_END);
+        add(new JScrollPane(table));
 
         setVisible(true);
-        // Get's messy if the user can resize this screen, so no they won't resize anything
-        setResizable(false);
     }
-
 
     /**
      * @param containers List of Containers to add to the top panel of the screen
