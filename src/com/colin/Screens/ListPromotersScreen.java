@@ -57,6 +57,11 @@ public class ListPromotersScreen extends JFrame {
         add(new JScrollPane(table));
 
         setVisible(true);
+
+        backButton.addActionListener(e->{
+            ListPromotersScreen.this.setVisible(false);
+            new HomeScreen();
+        });
     }
 
     /**
