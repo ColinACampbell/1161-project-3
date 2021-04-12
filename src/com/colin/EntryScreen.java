@@ -78,7 +78,7 @@ public class EntryScreen {
 			String name = scan.next();
 			System.out.println("Please enter Promoter Budget:");
 			double budget = Double.parseDouble(scan.next());
-			p = new Promoter(name, budget, min, vens);
+			p = new Promoter(name,"","","", budget, min, vens);
 		}
 		catch(NumberFormatException nf) {}
 		

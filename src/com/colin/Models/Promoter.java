@@ -9,8 +9,9 @@ import java.util.Scanner;
  */
 public class Promoter  implements Comparable<Promoter>{
 	private String name;
-	private String phone1;
-	private String emailAddress;
+	private String phone;
+	private String email;
+	private String address;
 	private double budget;
 	private Ministry min;
 	///
@@ -20,16 +21,19 @@ public class Promoter  implements Comparable<Promoter>{
 	private ArrayList<Event> approvedEvents = new ArrayList<Event>();
 	private ArrayList<Plan> plannedEvents = new ArrayList<Plan>();
 	
-	public Promoter (String name,double budget, Ministry min, ArrayList<Venue> venues) {
+	public Promoter (String name,String phone, String email, String address,double budget, Ministry min, ArrayList<Venue> venues) {
 
 		this.name = name;
 		this.budget = budget;
 		this.min = min;    
 		this.venues= venues;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
 		id = nextid;
 		nextid++;
   	}
-	//////
+
 	
 	public int compareTo(Promoter other)
 	{

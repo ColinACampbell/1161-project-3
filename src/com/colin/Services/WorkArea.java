@@ -40,7 +40,7 @@ public class WorkArea {
 				String [] nextLine = pscan.nextLine().split(" ");
 				String name = nextLine[0];
 				double budget = Integer.parseInt(nextLine[1]);
-				Promoter p = new Promoter(name, budget,mny, vens);
+				Promoter p = new Promoter(name, "","","",budget,mny, vens);
 				plist.add(p);
 			}
 
