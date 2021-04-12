@@ -26,12 +26,11 @@ public class CreatePromoterScreen extends JFrame
     
     public CreatePromoterScreen()
 	{
-        setSize(300, 400);
-
         thisForm = this;
         ButtonListener buttonListener = new ButtonListener();
 
         setTitle("CREATE PROMOTER");
+        setSize(new Dimension(300, 400));
 
         pnlCommand = new JPanel();
         pnlDisplay = new JPanel();
@@ -68,6 +67,7 @@ public class CreatePromoterScreen extends JFrame
         add(pnlCommand, BorderLayout.SOUTH);
 		
         pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.pink); // CHANGE
         setVisible(true);
 	}

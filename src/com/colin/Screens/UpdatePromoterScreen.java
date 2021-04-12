@@ -41,8 +41,8 @@ public class UpdatePromoterScreen extends JFrame
 
         prlist.add(new Promoter("Pro2", 1000.0, ministry, vlist));
 
-        // setSize(500, 500);
-
+        setSize(new Dimension(900,600));
+       
         setTitle("UPDATE PROMOTER");
 
         pnlDisplay = new JPanel();
@@ -112,7 +112,8 @@ public class UpdatePromoterScreen extends JFrame
         add(pnlCommand, BorderLayout.SOUTH);
 
         // pack();
-        setBackground(Color.pink); // CHANGE
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(Color.pink); 
         setVisible(true);    
     }
 
