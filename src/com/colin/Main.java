@@ -13,7 +13,7 @@ public class Main
     {
         // ListPromotersScreen screen = new ListPromotersScreen();
         // DeletePromoterScreen screen = new DeletePromoterScreen();
-        // CreatePromoterScreen screen = new CreatePromoterScreen(); 
+        CreatePromoterScreen screen = new CreatePromoterScreen(); 
         // UpdatePromoterScreen screen = new UpdatePromoterScreen(); 
     }
 }

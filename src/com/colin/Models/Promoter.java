@@ -9,23 +9,25 @@ import java.util.Scanner;
  */
 public class Promoter  implements Comparable<Promoter>{
 	private String name;
-	private String phone1;
+	private String phone;
 	private String emailAddress;
 	private double budget;
 	private Ministry min;
 	///
 	private int id;
-	private static int nextid =0;
+	private static int nextid = 0;
 	private ArrayList<Venue> venues;
 	private ArrayList<Event> approvedEvents = new ArrayList<Event>();
 	private ArrayList<Plan> plannedEvents = new ArrayList<Plan>();
 	
-	public Promoter (String name,double budget, Ministry min, ArrayList<Venue> venues) {
+	public Promoter(String name, String phone, String emailAddress, double budget, Ministry min, ArrayList<Venue> venues) {
 
 		this.name = name;
+		this.phone = phone;
+		this.emailAddress = emailAddress;
 		this.budget = budget;
 		this.min = min;    
-		this.venues= venues;
+		this.venues = venues;
 		id = nextid;
 		nextid++;
   	}

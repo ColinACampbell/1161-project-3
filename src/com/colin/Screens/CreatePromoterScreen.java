@@ -1,16 +1,21 @@
 package com.colin.Screens;
 
+import com.colin.Models.*;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class CreatePromoterScreen extends JFrame
 {
     private JTextField txtName;
     private JTextField txtBudget;
+    private JTextField txtPhoneNumber;
+    private JTextField txtEmailAddress;
 
     private JButton cmdSave;
     private JButton cmdClose; // make it disappear and go back to HomeScreen
@@ -20,9 +25,9 @@ public class CreatePromoterScreen extends JFrame
 
     private CreatePromoterScreen thisForm;
     
-    // ArrayList<Promoter> prlist;
-    // Ministry ministry = new Minstry("HEALTH", 2);
-    // ArrayList<Venue> vlist;
+    ArrayList<Promoter> prlist;
+    Ministry ministry = new Ministry("HEALTH", 2);
+    ArrayList<Venue> vlist;
     
     public CreatePromoterScreen()
 	{
@@ -30,8 +35,8 @@ public class CreatePromoterScreen extends JFrame
         ButtonListener buttonListener = new ButtonListener();
 
         setTitle("CREATE PROMOTER");
-        setSize(new Dimension(300, 400));
-
+        setPreferredSize(new Dimension(500, 400));
+        
         pnlCommand = new JPanel();
         pnlDisplay = new JPanel();
 
@@ -44,12 +49,12 @@ public class CreatePromoterScreen extends JFrame
         pnlDisplay.add(txtBudget);
 
         pnlDisplay.add(new JLabel("Phone Number:"));
-        txtBudget = new JTextField(10);  
-        pnlDisplay.add(txtBudget);
+        txtPhoneNumber = new JTextField(10);  
+        pnlDisplay.add(txtPhoneNumber);
 
         pnlDisplay.add(new JLabel("Email Address:"));
-        txtBudget = new JTextField(10);  
-        pnlDisplay.add(txtBudget);
+        txtEmailAddress = new JTextField(10);  
+        pnlDisplay.add(txtEmailAddress);
 
         pnlDisplay.setLayout(new GridLayout(8, 1));
 
@@ -61,14 +66,18 @@ public class CreatePromoterScreen extends JFrame
         cmdClose.addActionListener(buttonListener);
         pnlCommand.add(cmdClose);
 
-        pnlCommand.setLayout(new GridLayout(1, 2));
+        pnlCommand.setLayout(new FlowLayout());
+        // pnlCommand.setBounds(140,90,200,40);
+
+        pnlDisplay.setLayout(new FlowLayout());
 
         add(pnlDisplay, BorderLayout.CENTER);
         add(pnlCommand, BorderLayout.SOUTH);
 		
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBackground(Color.pink); // CHANGE
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // setBackground(Color.pink); 
+
         setVisible(true);
 	}
 
@@ -85,12 +94,13 @@ public class CreatePromoterScreen extends JFrame
                     {
                         String name = txtName.getText();
                         double budget = Double.parseDouble(txtBudget.getText());
-                        // String phoneNumber =
-                        // String emailAddress = 
+                        String phoneNumber = txtPhoneNumber.getText();
+                        String emailAddress = txtEmailAddress.getText();
 
-                        // Promoter pr = new Promoter(name, phoneNumber, emailAddress, budget, ministry, vlist);
-                        // prlist.add(pr);
-                        // a service class
+                        Promoter pr = new Promoter(name, phoneNumber, emailAddress, budget, ministry, vlist);
+                        prlist.add(pr);
+
+                        add(new JLabel("Successfully Created!"));
                     }
                 }
 		        catch(NumberFormatException nf) {}

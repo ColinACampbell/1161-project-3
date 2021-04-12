@@ -15,8 +15,8 @@ public class WorkArea {
 
 	private ArrayList<Promoter> promoters = new ArrayList<Promoter>();
 	private ArrayList<Venue> venues = new ArrayList<Venue>();
-	private Ministry mny = new Ministry("HEALTH",2 );
-	ReportScreen r= new ReportScreen();
+	private Ministry mny = new Ministry("HEALTH", 2);
+	ReportScreen r = new ReportScreen();
 
 
     public void clearData()
@@ -37,19 +37,19 @@ public class WorkArea {
 			pscan  = new Scanner(new File(pfile));
 			while(pscan.hasNext())
 			{
-				String [] nextLine = pscan.nextLine().split(" ");
+				String[] nextLine = pscan.nextLine().split(" ");
 				String name = nextLine[0];
 				double budget = Integer.parseInt(nextLine[1]);
-				Promoter p = new Promoter(name, budget,mny, vens);
+				String phone = nextLine[3];
+				String email = nextLine[4];
+				Promoter p = new Promoter(name, phone, email, budget, mny, vens);
 				plist.add(p);
 			}
 
 			pscan.close();
 		}
-		catch(IOException e)
-		{}
-		catch(NumberFormatException nfe)
-		{}
+		catch(IOException e) {}
+		catch(NumberFormatException nfe) {}
 
 		return plist;
 
@@ -141,10 +141,10 @@ public class WorkArea {
 	{
 		loadData(caseNo);
 		System.out.print("Test case " + caseNo+ " loaded: Show data?[y/n]");
-		String response  = scan.next();
-        if (response.toUpperCase().charAt(0)=='Y')
+		String response = scan.next();
+        if (response.toUpperCase().charAt(0) == 'Y')
         {
-    		ReportScreen r= new ReportScreen();
+    		ReportScreen r = new ReportScreen();
             r.listVenues(venues, System.out);
             r.listPromoters(promoters, System.out);
         	
@@ -158,16 +158,12 @@ public class WorkArea {
 		venues = loadVenues(getVenueFile(caseNo));
     	promoters  =  loadPromoters(getProFile(caseNo),  mny,  venues );
 		promoters  =  loadEventsToPromoters(promoters, getEventFile(caseNo) );
-
-		}
+	}
 	
-
-
 	private String getProFile(int caseNo)
 	{
 		return "cases/Promoter."+caseNo+".txt";
 	}
-
 
 	private String getVenueFile(int caseNo)
 	{
