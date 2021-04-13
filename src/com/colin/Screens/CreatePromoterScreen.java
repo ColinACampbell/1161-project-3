@@ -37,13 +37,29 @@ public class CreatePromoterScreen extends JFrame
 	{
         thisForm = this;
         ButtonListener buttonListener = new ButtonListener();
-
+    
         setTitle("CREATE PROMOTER");
-        setPreferredSize(new Dimension(700, 500));
-        
+        setPreferredSize(new Dimension(450, 400));
+
         pnlCommand = new JPanel();
         pnlDisplay = new JPanel();
+        
+        //
+        pnlDisplay.setLayout(new GridLayout(12, 2));
+        pnlDisplay.setBackground(Color.pink); 
+		
+        pnlCommand.setLayout(new FlowLayout());
+        pnlCommand.setBackground(Color.pink); 
 
+        /*
+        GridBagConstraints gbc = new GridBagConstraints();
+ 
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 0;
+        */
+       
         pnlDisplay.add(new JLabel("Name:")); 
         txtName = new JTextField(10);
         pnlDisplay.add(txtName);
@@ -61,16 +77,17 @@ public class CreatePromoterScreen extends JFrame
         pnlDisplay.add(txtEmailAddress);
 
         pnlDisplay.add(new JLabel("Home Address:"));
+        pnlDisplay.add(new JLabel(" "));
 
-        pnlDisplay.add(new JLabel("Address Line 1:"));
+        pnlDisplay.add(new JLabel("       Address Line 1:"));
         txtAddressLine1 = new JTextField(20);  
         pnlDisplay.add(txtAddressLine1);
 
-        pnlDisplay.add(new JLabel("Address Line 2:"));
+        pnlDisplay.add(new JLabel("       Address Line 2:"));
         txtAddressLine2 = new JTextField(20);  
         pnlDisplay.add(txtAddressLine2);
 
-        pnlDisplay.add(new JLabel("Address Line 3:"));
+        pnlDisplay.add(new JLabel("       Address Line 3:"));
         txtAddressLine3 = new JTextField(20);  
         pnlDisplay.add(txtAddressLine3);
 
@@ -81,12 +98,6 @@ public class CreatePromoterScreen extends JFrame
         cmdClose = new JButton("Close");
         cmdClose.addActionListener(buttonListener);
         pnlCommand.add(cmdClose);
-
-        pnlDisplay.setLayout(new GridLayout(12, 1));
-        pnlDisplay.setBackground(Color.pink); 
-		
-        pnlCommand.setLayout(new FlowLayout());
-        pnlCommand.setBackground(Color.pink); 
 		
         add(pnlDisplay, BorderLayout.CENTER);
         add(pnlCommand, BorderLayout.SOUTH);
