@@ -1,8 +1,5 @@
 3##@John Doe##@1234##@seefo@mail.com##@Some Adddress##@212.0
 4##@John Doe##@1234##@seefo@mail.com##@Some Adddress##@356.0
-10##@John Doe##@1234##@seefo@mail.com##@Some Adddress##@100.0
-5##@Bill Mahr##@1234##@email@main.com##@Some Adddress##@240.0
 6##@Big Boss##@(858) 484 4884##@email2@mail.com##@Big Address##@900.0
 7##@John Doe##@1234##@seefo@mail.com##@Some Adddress##@300.0
 8##@Bill Mahr##@1234##@email@main.com##@Some Adddress##@400.0
-9##@Big Boss##@(858) 484 4884##@email2@mail.com##@Big Address##@600.0
