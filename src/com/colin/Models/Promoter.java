@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Class represents someone who organizes events, and spend money on venues
  */
-public class Promoter  implements Comparable<Promoter>{
+public class Promoter  implements Comparable<Promoter> {
 	private String name;
 	private String phone;
 	private String email;

@@ -1,5 +1,7 @@
 package com.colin.Screens;
 
+import com.colin.Comparators.PromoterBudgetComparator;
+import com.colin.Comparators.PromoterIDComparator;
 import com.colin.Models.Promoter;
 import com.colin.Services.PromoterService;
 
@@ -9,9 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ListPromotersScreen extends JFrame {
-
 
     private JPanel content = new JPanel();
     private JScrollPane jScrollPane = new JScrollPane();
@@ -32,7 +34,7 @@ public class ListPromotersScreen extends JFrame {
 
         searchByIDField.setColumns(20);
 
-        setTitle("Promoter");
+        setTitle("Promoters");
         setSize(new Dimension(900,600));
 
         // This layout makes everything looks how it should
@@ -63,6 +65,40 @@ public class ListPromotersScreen extends JFrame {
             ListPromotersScreen.this.setVisible(false);
             new HomeScreen();
         });
+
+        sortByIDButton.addActionListener(e->{
+            clearTable();
+            Collections.sort(promoters,new PromoterIDComparator());
+            initRows(promoters);
+        });
+        
+        sortByBudgetButton.addActionListener(e->{
+            clearTable();
+            Collections.sort(promoters,new PromoterBudgetComparator());
+            initRows(promoters);
+        });
+
+        searchByIDButton.addActionListener(e->{
+            clearTable();
+            String idText = searchByIDField.getText();
+
+            if (idText.trim().isEmpty())
+                initRows(promoters);
+            else {
+                Promoter promoter = promoterService.findPromoter(Integer.parseInt(idText));
+                System.out.println(promoter);
+
+                if (promoter == null)
+                    clearTable();
+                else {
+                    clearTable();
+                    ArrayList<Promoter> sample = new ArrayList<>();
+                    sample.add(promoter);
+                    initRows(sample); // just show that one promoter if exists
+                }
+            }
+        });
+
     }
 
     /**
@@ -100,6 +136,11 @@ public class ListPromotersScreen extends JFrame {
         tableModel.addColumn("Email");
         tableModel.addColumn("Address");
 
+        initRows(promoters);
+    }
+
+    private void initRows(ArrayList<Promoter> promoters)
+    {
         for (Promoter promoter : promoters)
         {
             Object[] row = new Object[]{promoter.getId(),promoter.getName(),promoter.getBudget(),
@@ -107,6 +148,12 @@ public class ListPromotersScreen extends JFrame {
 
             tableModel.addRow(row);
         }
-
     }
+
+
+    private void clearTable()
+    {
+        tableModel.setRowCount(0);
+    }
+
 }
