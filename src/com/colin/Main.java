@@ -10,10 +10,12 @@ public class Main
 {
     public static void main(String[] args)
     {
-        new HomeScreen(); // start the app
+        CreatePromoterScreen screen = new CreatePromoterScreen();
+        // UpdatePromoterScreen screen = new UpdatePromoterScreen();
+        // new HomeScreen(); // start the app
     }
 
-    private static void persistPromotersTest()
+    /* private static void persistPromotersTest()
     {
         PromoterService promoterService = new PromoterService();
         Ministry ministry = new Ministry("Min",1);
@@ -22,6 +24,6 @@ public class Main
         promoterService.addPromoter(promoter);
         promoterService.addPromoter(promoter2);
 
-    }
+    } */
 
 }

@@ -3,6 +3,7 @@ package com.colin.Screens;
 import javax.swing.*;
 
 import com.colin.Models.*;
+import com.colin.Services.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,10 +16,12 @@ public class UpdatePromoterScreen extends JFrame
     private JTextField txtBudget;
     private JTextField txtPhone;
     private JTextField txtEmail;
+    private JTextField txtAddressLine1, txtAddressLine2, txtAddressLine3;
 
     private JButton cmdFind;
     private JButton cmdSave;
     private JButton cmdClose; 
+    private JButton cmdCancel;
 
     private JPanel pnlCommand;
     private JPanel pnlDisplay;
@@ -33,6 +36,7 @@ public class UpdatePromoterScreen extends JFrame
     ArrayList<Promoter> prlist;
     ArrayList<Venue> vlist;
     Ministry ministry = new Ministry("HEALTH", 2);
+    PromoterService promoterService;
 
     public UpdatePromoterScreen() // CHANGE
     {
@@ -50,14 +54,20 @@ public class UpdatePromoterScreen extends JFrame
         pnlFoundDisplay = new JPanel();
         pnlFoundCommand = new JPanel();
         pnlNotFoundDisplay = new JPanel();
-        // pnlNotFoundCommand = new JPanel();
         
+        // each panel's layout
+        pnlDisplay.setLayout(new GridLayout(2, 1));
+        pnlCommand.setLayout(new FlowLayout());
+        pnlFoundDisplay.setLayout(new GridLayout(2, 1));
+        pnlFoundCommand.setLayout(new FlowLayout());
+        pnlNotFoundDisplay.setLayout(new FlowLayout());
+
+        // the main panel's display
         pnlDisplay.add(new JLabel("Enter ID:")); 
         txtID = new JTextField(20);
         pnlDisplay.add(txtID);
 
-        pnlDisplay.setLayout(new GridLayout(2, 1));
-
+        // the main panel's command buttons
         cmdFind = new JButton("Find");
         cmdFind.addActionListener(buttonListener);
         pnlCommand.add(cmdFind);
@@ -66,20 +76,18 @@ public class UpdatePromoterScreen extends JFrame
         cmdClose.addActionListener(buttonListener);
         pnlCommand.add(cmdClose);
 
-        pnlCommand.setLayout(new GridLayout(1, 2));
+        // the found pannel's display
+        pnlFoundDisplay.add(new JLabel("Promoter Found!"));
 
-        //
-        // prlist.get(pdx);
-    
         // pnlFoundDisplay.add(new JLabel("")); 
         // pnlFoundDisplay.add(new JLabel("")); 
-        
+
         pnlFoundDisplay.add(new JLabel("New Name:")); 
         txtName = new JTextField(20);
         pnlFoundDisplay.add(txtName);
 
         pnlFoundDisplay.add(new JLabel("New Budget:"));
-        txtBudget = new JTextField(10);  // CHANGE 
+        txtBudget = new JTextField(10);  
         pnlFoundDisplay.add(txtBudget);
 
         pnlFoundDisplay.add(new JLabel("New Phone Number:"));
@@ -87,33 +95,48 @@ public class UpdatePromoterScreen extends JFrame
         pnlFoundDisplay.add(txtPhone);
 
         pnlFoundDisplay.add(new JLabel("New Email Address:"));
-        txtEmail = new JTextField(10); 
+        txtEmail = new JTextField(15); 
         pnlFoundDisplay.add(txtEmail);
 
+        pnlFoundDisplay.add(new JLabel("New Home Address:"));
+
+        pnlFoundDisplay.add(new JLabel("Address Line 1:"));
+        txtAddressLine1 = new JTextField(20); 
+        pnlFoundDisplay.add(txtAddressLine1);
+
+        pnlFoundDisplay.add(new JLabel("Address Line 2:"));
+        txtAddressLine2 = new JTextField(20); 
+        pnlFoundDisplay.add(txtAddressLine2);
+
+        pnlFoundDisplay.add(new JLabel("Address Line 3:"));
+        txtAddressLine3 = new JTextField(10); 
+        pnlFoundDisplay.add(txtAddressLine3);
+
+        // the found panel's command buttons
         cmdSave = new JButton("Save");
         cmdSave.addActionListener(buttonListener);
         pnlFoundCommand.add(cmdSave);
 
-        cmdClose = new JButton("Close");
-        cmdClose.addActionListener(buttonListener);
-        pnlFoundCommand.add(cmdClose);
+        cmdCancel = new JButton("Cancel");
+        cmdCancel.addActionListener(buttonListener);
+        pnlFoundCommand.add(cmdCancel);
+    
+        // the not found panel's diplay (no command buttons)
+        pnlNotFoundDisplay.add(new JLabel("Promoter Not Found!"));
+        pnlNotFoundDisplay.add(new JLabel("Try Again!"));
 
-        pnlNotFoundDisplay.add(new JLabel("Promoter Found"));
         pnlFoundDisplay.setVisible(false);
         pnlFoundCommand.setVisible(false);
-        //
-
-        //
-        pnlNotFoundDisplay.add(new JLabel("Promoter Not Found"));
         pnlNotFoundDisplay.setVisible(false);
-        //
 
         add(pnlDisplay, BorderLayout.CENTER);
         add(pnlCommand, BorderLayout.SOUTH);
+        add(pnlFoundDisplay, BorderLayout.CENTER);
+        add(pnlFoundCommand, BorderLayout.SOUTH);
+        add(pnlNotFoundDisplay, BorderLayout.CENTER);
 
-        // pack();
+        pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBackground(Color.pink); 
         setVisible(true);    
     }
 
@@ -128,32 +151,42 @@ public class UpdatePromoterScreen extends JFrame
                     if(txtID.getText().length() > 0)
                     {
                         int pid = Integer.parseInt(txtID.getText());
-                        // pdx = findPromoter(prlist, pid);
+                        Promoter pr = promoterService.findPromoter(pid);
 
-                        if(pid == 0) // ADJUST
+                        if(pr != null)
                         {
                             pnlDisplay.setVisible(false);
                             pnlCommand.setVisible(false);
                             
                             pnlFoundDisplay.setVisible(true);
-                            add(pnlFoundDisplay, BorderLayout.CENTER);
                             pnlFoundCommand.setVisible(true);
-                            add(pnlFoundCommand, BorderLayout.SOUTH);
                         }
                         else
                         {
-                            add(pnlNotFoundDisplay, BorderLayout.CENTER);
                             pnlNotFoundDisplay.setVisible(true);
-                        }
-                            
+                        }     
                     }
                 }
                 catch(NumberFormatException nf) {}
             }
 
-            else if(event.getSource() == "Save") {}
+            else if(event.getSource() == "Save")
+            {
+                int id = Integer.parseInt(txtID.getText());
+                String name = txtName.getText();
+                double budget = Double.parseDouble(txtBudget.getText());
+                String phone = txtPhone.getText();
+                String email = txtEmail.getText();
+                String address = txtAddressLine1.getText()+", "+txtAddressLine2.getText()+", "+txtAddressLine3.getText();
 
-            else if(event.getSource() == "Close")
+                promoterService.updatePromoter(id, name, phone, email, address, budget);
+
+                // add(new JLabel("Saved!"), BorderLayout.CENTER);
+
+                UpdatePromoterScreen.this.thisForm.setVisible(false);
+            }
+
+            else if(event.getSource() == "Close" || event.getSource() == "Cancel" )
             {
                 UpdatePromoterScreen.this.thisForm.setVisible(false);
             }
