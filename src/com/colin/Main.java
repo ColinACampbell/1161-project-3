@@ -14,32 +14,18 @@ public class Main
 {
     public static void main(String[] args)
     {
-        //new HomeScreen(); // start the app
-        PromoterService promoterService = PromoterService.getInstance();
-        persistPromotersTest();
+        new HomeScreen(); // start the app
     }
 
     private static void persistPromotersTest()
     {
-        PromoterService promoterService = PromoterService.getInstance();
+        PromoterService promoterService = new PromoterService();
         Ministry ministry = new Ministry("Min",1);
         Promoter promoter = new Promoter("John Doe","1234","seefo@mail.com","Some Adddress",200.00,ministry,new ArrayList<>());
         Promoter promoter2 = new Promoter("Bill Mahr","1234","email@main.com","Some Adddress",200.00,ministry,new ArrayList<>());
         promoterService.addPromoter(promoter);
         promoterService.addPromoter(promoter2);
-        try {
-            promoterService.persist();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        Promoter promoter3 = new Promoter("Big Boss","(858) 484 4884","email2@mail.com","Big Address",200.00,ministry,new ArrayList<>());
-        try {
-            promoterService.addPromoter(promoter3);
-            promoterService.persist();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }

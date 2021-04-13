@@ -17,7 +17,7 @@ public class PromoterService {
     private ArrayList<Promoter> promoters = new ArrayList<>();
     private final File dbFile;
 
-    private PromoterService()
+    public PromoterService()
     {
         // Set Up File and the directory which we want it to be in if it does not exists
         File dbDir = new File("database-dir");
@@ -32,16 +32,7 @@ public class PromoterService {
                 e.printStackTrace();
             }
         }
-
         loadPromotersFromDB();
-    }
-
-    public static PromoterService getInstance()
-    {
-        if (promoterService == null)
-            promoterService = new PromoterService();
-
-        return promoterService;
     }
 
     /**
@@ -60,6 +51,16 @@ public class PromoterService {
         return null;
     }
 
+    /**
+     * Updates a Promoter's information give his id
+     * @param id Id Of Promoter
+     * @param name Name of Promoter
+     * @param phone Phone of Promoter
+     * @param email Email of Promoter
+     * @param address Address of Promoter
+     * @param budget Budget of Promoter
+     * @return Promoter that was updated
+     */
     public Promoter updatePromoter(int id, String name,String phone, String email, String address,double budget)
     {
         Promoter promoter = findPromoter(id);
@@ -83,6 +84,11 @@ public class PromoterService {
         return promoter;
     }
 
+    /**
+     * Deletes a Promoter given the id and updates the database
+     * @param id ID Of Promoter
+     * @return Promoter delete, null if not found to be deleted
+     */
     public Promoter deletePromoter(int id)
     {
         Promoter promoter = findPromoter(id);
@@ -97,6 +103,10 @@ public class PromoterService {
         return promoter;
     }
 
+    /**
+     * Add's a promoter to the service then updated the database
+     * @param promoter Promoter to be added
+     */
     public void addPromoter(Promoter promoter)
     {
         promoters.add(promoter);
@@ -112,6 +122,9 @@ public class PromoterService {
         return promoters;
     }
 
+    /**
+     * This loads promoters from the file into memory
+     */
     private void loadPromotersFromDB()
     {
         ArrayList<Promoter> loadedPromoters = new ArrayList<>();
@@ -137,11 +150,10 @@ public class PromoterService {
         promoters = loadedPromoters;
     }
 
-
     /***
      * Saves the data store in memory permanently on the disk
      * **/
-    public void persist() throws IOException {
+    private void persist() throws IOException {
         dbFile.delete(); // delete
         dbFile.createNewFile(); // the create new file
         PrintWriter printWriter = new PrintWriter(dbFile);
