@@ -1,10 +1,14 @@
 package com.colin.Screens;
 
+import com.colin.Models.Promoter;
+import com.colin.Services.PromoterService;
+
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ListPromotersScreen extends JFrame {
 
@@ -18,6 +22,10 @@ public class ListPromotersScreen extends JFrame {
     private JButton sortByBudgetButton = new JButton("Sort By Budget");
     private JButton searchByIDButton = new JButton("Search By ID");
     private JTextField searchByIDField = new JFormattedTextField();
+    DefaultTableModel tableModel = new DefaultTableModel();
+
+    private final PromoterService promoterService = new PromoterService();
+    private final ArrayList<Promoter> promoters = promoterService.getPromoters();
 
     public ListPromotersScreen()
     {
@@ -40,17 +48,10 @@ public class ListPromotersScreen extends JFrame {
         add(topBarComponents,BorderLayout.PAGE_START);
 
         // Now set up the table
-        DefaultTableModel tableModel = new DefaultTableModel();
+
         JTable table = new JTable(tableModel);
 
-        tableModel.addColumn("Languages");
-        tableModel.insertRow(0, new Object[] { "CSS" });
-        tableModel.insertRow(0, new Object[] { "HTML5" });
-        tableModel.insertRow(0, new Object[] { "JavaScript" });
-        tableModel.insertRow(0, new Object[] { "jQuery" });
-        tableModel.insertRow(0, new Object[] { "AngularJS" });
-        tableModel.insertRow(tableModel.getRowCount(), new Object[] { "ExpressJS" });
-
+        setUpTableModel();
         //jScrollPane.add(table);
         //jScrollPane.setPreferredSize(new Dimension(1000,500));
         // Add to the bottom of the screen
@@ -88,5 +89,24 @@ public class ListPromotersScreen extends JFrame {
             panel.add(container);
 
         return panel;
+    }
+
+    private void setUpTableModel()
+    {
+        tableModel.addColumn("ID");
+        tableModel.addColumn("Name");
+        tableModel.addColumn("Budget");
+        tableModel.addColumn("Phone");
+        tableModel.addColumn("Email");
+        tableModel.addColumn("Address");
+
+        for (Promoter promoter : promoters)
+        {
+            Object[] row = new Object[]{promoter.getId(),promoter.getName(),promoter.getBudget(),
+                    promoter.getPhone(),promoter.getEmail(),promoter.getAddress()};
+
+            tableModel.addRow(row);
+        }
+
     }
 }

@@ -3,7 +3,6 @@ package com.colin.Services;
 import com.colin.Models.Ministry;
 import com.colin.Models.Promoter;
 import com.colin.Models.Venue;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -59,7 +58,7 @@ public class PromoterService {
      * @param email Email of Promoter
      * @param address Address of Promoter
      * @param budget Budget of Promoter
-     * @return Promoter that was updated
+     * @return Promoter that was updated, null if not found
      */
     public Promoter updatePromoter(int id, String name,String phone, String email, String address,double budget)
     {
@@ -117,6 +116,9 @@ public class PromoterService {
         }
     }
 
+    /**
+     * @return Gets promoters from memory
+     */
     public ArrayList<Promoter> getPromoters() {
 
         return promoters;

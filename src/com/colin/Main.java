@@ -2,12 +2,8 @@ package com.colin;
 
 import com.colin.Models.Ministry;
 import com.colin.Models.Promoter;
-import com.colin.Models.Venue;
 import com.colin.Screens.*;
 import com.colin.Services.PromoterService;
-
-import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main 
