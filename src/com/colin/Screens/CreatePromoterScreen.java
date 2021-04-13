@@ -30,7 +30,6 @@ public class CreatePromoterScreen extends JFrame
     // 
     Ministry ministry = new Ministry("HEALTH", 2);
     ArrayList<Venue> vlist = new ArrayList<>();
-    PromoterService promoterService = new PromoterService();
     //
     
     public CreatePromoterScreen()
@@ -109,6 +108,8 @@ public class CreatePromoterScreen extends JFrame
 
     private class ButtonListener implements ActionListener
     {
+        PromoterService promoterService = new PromoterService();
+        
         public void actionPerformed(ActionEvent event)
         {
             if(event.getSource() == cmdSave)
