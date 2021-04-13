@@ -56,7 +56,7 @@ public class Promoter  implements Comparable<Promoter>{
 	
 	public String toString()
 	{
-		return this.getId()+";"+this.name +";"+this.budget+";"+this.plannedEvents.size()+";"+this.approvedEvents.size();
+		return this.getId()+";"+this.name +";"+this.budget+";"+phone+";"+email+";"+address;
 	}
 	
 	public void addPlan (Plan p)
@@ -176,7 +176,17 @@ public class Promoter  implements Comparable<Promoter>{
 		return returnVal;
 	}
 
-	
+	/**
+	 * Override the id that's assigned to the promoter when created
+	 * @param newID new id
+	 */
+	public void overrideID(int newID)
+	{
+		this.id = newID;
+		nextid = newID+1; // to prevent conflicts
+	}
+
+
 	public double getBudget()
 	{
 		return budget;
@@ -187,4 +197,16 @@ public class Promoter  implements Comparable<Promoter>{
 		return name;
 	}
 
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
 }
