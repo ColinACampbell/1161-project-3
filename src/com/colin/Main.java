@@ -16,8 +16,7 @@ public class Main
     {
         //new HomeScreen(); // start the app
         PromoterService promoterService = PromoterService.getInstance();
-        promoterService.loadPromotersFromDB();
-        //persistPromotersTest();
+        persistPromotersTest();
     }
 
     private static void persistPromotersTest()

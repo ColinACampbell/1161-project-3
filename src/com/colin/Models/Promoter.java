@@ -186,6 +186,17 @@ public class Promoter  implements Comparable<Promoter>{
 		nextid = newID+1; // to prevent conflicts
 	}
 
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	public double getBudget()
 	{

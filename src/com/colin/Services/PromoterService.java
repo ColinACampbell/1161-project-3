@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class PromoterService {
 
     private static PromoterService promoterService;
-    private final ArrayList<Promoter> promoters = new ArrayList<>();
-    private File dbFile;
+    private ArrayList<Promoter> promoters = new ArrayList<>();
+    private final File dbFile;
 
     private PromoterService()
     {
@@ -32,6 +32,8 @@ public class PromoterService {
                 e.printStackTrace();
             }
         }
+
+        loadPromotersFromDB();
     }
 
     public static PromoterService getInstance()
@@ -42,19 +44,77 @@ public class PromoterService {
         return promoterService;
     }
 
+    /**
+     * Looks for promoter in the loaded list of promoters
+     * @param id Promoter id
+     * @return Promoter if found, null if not found
+     */
+    public Promoter findPromoter(int id)
+    {
+        for (Promoter promoter : promoters)
+        {
+            if (promoter.getId() == id)
+                return promoter;
+        }
+
+        return null;
+    }
+
+    public Promoter updatePromoter(int id, String name,String phone, String email, String address,double budget)
+    {
+        Promoter promoter = findPromoter(id);
+        if (promoter == null)
+            return null;
+
+        promoter.setName(name);
+        promoter.setPhone(phone);
+        promoter.setEmail(email);
+        promoter.setAddress(address);
+        promoter.setBudget(budget);
+
+        promoters.remove(promoter); // Remove then add him/her back
+        promoters.add(promoter);
+
+        try {
+            persist();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return promoter;
+    }
+
+    public Promoter deletePromoter(int id)
+    {
+        Promoter promoter = findPromoter(id);
+        if (promoter == null)
+            return null;
+        promoters.remove(promoter);
+        try {
+            persist();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return promoter;
+    }
 
     public void addPromoter(Promoter promoter)
     {
         promoters.add(promoter);
+        try {
+            persist();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Promoter> getPromoters() {
+
         return promoters;
     }
 
-
-    public ArrayList<Promoter> loadPromotersFromDB()
+    private void loadPromotersFromDB()
     {
+        ArrayList<Promoter> loadedPromoters = new ArrayList<>();
         try {
             Scanner scanner = new Scanner(dbFile);
             while (scanner.hasNext())
@@ -69,11 +129,12 @@ public class PromoterService {
 
                 Promoter promoter = new Promoter(promoterName,promoterPhone,promoterEmail,promoterAddress,promoterBudget,new Ministry("Yes Sah",1),new ArrayList<Venue>());
                 promoter.overrideID(id);
+                loadedPromoters.add(promoter);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return promoters;
+        promoters = loadedPromoters;
     }
 
 
