@@ -29,7 +29,7 @@ public class EntryScreen {
 			{
 			case 'A':{
 				Promoter p = createPromoter(scan, min, vens);
-				if (p != null)
+				if (p!=null)
 					proms.add(p);
 				break;
 			}
@@ -69,7 +69,7 @@ public class EntryScreen {
 
 
 
-	public Promoter createPromoter(Scanner scan, Ministry min, ArrayList<Venue> vens)
+	public Promoter createPromoter( Scanner scan, Ministry min, ArrayList<Venue> vens)
 	{
 		Promoter p = null;
 		try
@@ -78,11 +78,7 @@ public class EntryScreen {
 			String name = scan.next();
 			System.out.println("Please enter Promoter Budget:");
 			double budget = Double.parseDouble(scan.next());
-			System.out.println("Please enter Promoter Phone Number:");
-			String phone = scan.next();
-			System.out.println("Please enter Promoter Email Address:");
-			String email = scan.next();
-			p = new Promoter(name, phone, email, budget, min, vens);
+			p = new Promoter(name,"","","", budget, min, vens);
 		}
 		catch(NumberFormatException nf) {}
 		

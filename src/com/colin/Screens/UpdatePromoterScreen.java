@@ -39,10 +39,7 @@ public class UpdatePromoterScreen extends JFrame
         thisForm = this;
         ButtonListener buttonListener = new ButtonListener();
 
-        //
-        prlist.add(new Promoter("Relix", "8764568903", "relix@gmail.com", 1000.0, ministry, vlist));
-        prlist.add(new Promoter("Annia", "8763982344", "ann@gmail.com", 16600.0, ministry, vlist));
-        //
+        prlist.add(new Promoter("Pro2","","","", 1000.0, ministry, vlist));
 
         setSize(new Dimension(900,600));
        
@@ -73,6 +70,7 @@ public class UpdatePromoterScreen extends JFrame
 
         //
         // prlist.get(pdx);
+    
         // pnlFoundDisplay.add(new JLabel("")); 
         // pnlFoundDisplay.add(new JLabel("")); 
         
@@ -81,7 +79,7 @@ public class UpdatePromoterScreen extends JFrame
         pnlFoundDisplay.add(txtName);
 
         pnlFoundDisplay.add(new JLabel("New Budget:"));
-        txtBudget = new JTextField(10);  
+        txtBudget = new JTextField(10);  // CHANGE 
         pnlFoundDisplay.add(txtBudget);
 
         pnlFoundDisplay.add(new JLabel("New Phone Number:"));
@@ -113,8 +111,8 @@ public class UpdatePromoterScreen extends JFrame
         add(pnlDisplay, BorderLayout.CENTER);
         add(pnlCommand, BorderLayout.SOUTH);
 
-        pack();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // pack();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.pink); 
         setVisible(true);    
     }

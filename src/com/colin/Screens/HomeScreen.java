@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,22 +19,30 @@ public class HomeScreen extends JFrame {
         gridLayout.setRows(2);
         gridLayout.setColumns(2);
 
-        JPanel[] appPanels = {createFeaturePanel("View Promoters","undraw_online_gallery_dmv3"),
-                createFeaturePanel("Create Promoters","undraw_Create_re_57a3"),
-                createFeaturePanel("Update Promoter","undraw_update_uxn2"),
-                createFeaturePanel("Delete Promoter","undraw_Throw_away_re_x60k")
+        JPanel[] appPanels = {createFeaturePanel("View Promoters","undraw_online_gallery_dmv3",e->{
+            HomeScreen.this.setVisible(false);
+            new ListPromotersScreen();
+        }), createFeaturePanel("Create Promoters","undraw_Create_re_57a3",e->{
+            //HomeScreen.this.setVisible(false);
+            new CreatePromoterScreen();
+        }), createFeaturePanel("Update Promoter","undraw_update_uxn2",e->{
+            //HomeScreen.this.setVisible(false);
+            new UpdatePromoterScreen();
+        }), createFeaturePanel("Delete Promoter","undraw_Throw_away_re_x60k",e->{
+            //HomeScreen.this.setVisible(false);
+            new DeletePromoterScreen();
+        })
         };
 
         setLayout(gridLayout);
         for (JPanel panel : appPanels)
             add(panel);
 
-
         setVisible(true);
     }
 
 
-    JPanel createFeaturePanel(String btnText, String imageName)
+    JPanel createFeaturePanel(String btnText, String imageName, ActionListener actionListener)
     {
         JPanel viewPromoterPanel = new JPanel();
         try
@@ -43,6 +52,7 @@ public class HomeScreen extends JFrame {
             JLabel textImage = new JLabel(new ImageIcon(scaledImage));
             viewPromoterPanel.add(textImage);
             JButton button = new JButton(btnText);
+            button.addActionListener(actionListener);
             button.setBounds(500,500,100,100);
             viewPromoterPanel.add(button);
 

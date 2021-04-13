@@ -7,31 +7,33 @@ import java.util.Scanner;
 /**
  * Class represents someone who organizes events, and spend money on venues
  */
-public class Promoter  implements Comparable<Promoter>{
+public class Promoter  implements Comparable<Promoter> {
 	private String name;
 	private String phone;
-	private String emailAddress;
+	private String email;
+	private String address;
 	private double budget;
 	private Ministry min;
 	///
 	private int id;
-	private static int nextid = 0;
+	private static int nextid =0;
 	private ArrayList<Venue> venues;
 	private ArrayList<Event> approvedEvents = new ArrayList<Event>();
 	private ArrayList<Plan> plannedEvents = new ArrayList<Plan>();
 	
-	public Promoter(String name, String phone, String emailAddress, double budget, Ministry min, ArrayList<Venue> venues) {
+	public Promoter (String name,String phone, String email, String address,double budget, Ministry min, ArrayList<Venue> venues) {
 
 		this.name = name;
-		this.phone = phone;
-		this.emailAddress = emailAddress;
 		this.budget = budget;
 		this.min = min;    
-		this.venues = venues;
+		this.venues= venues;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
 		id = nextid;
 		nextid++;
   	}
-	//////
+
 	
 	public int compareTo(Promoter other)
 	{
@@ -54,7 +56,7 @@ public class Promoter  implements Comparable<Promoter>{
 	
 	public String toString()
 	{
-		return this.getId()+";"+this.name +";"+this.budget+";"+this.plannedEvents.size()+";"+this.approvedEvents.size();
+		return this.getId()+";"+this.name +";"+this.budget+";"+phone+";"+email+";"+address;
 	}
 	
 	public void addPlan (Plan p)
@@ -174,7 +176,28 @@ public class Promoter  implements Comparable<Promoter>{
 		return returnVal;
 	}
 
-	
+	/**
+	 * Override the id that's assigned to the promoter when created
+	 * @param newID new id
+	 */
+	public void overrideID(int newID)
+	{
+		this.id = newID;
+		nextid = newID+1; // to prevent conflicts
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public double getBudget()
 	{
 		return budget;
@@ -185,4 +208,16 @@ public class Promoter  implements Comparable<Promoter>{
 		return name;
 	}
 
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
 }
