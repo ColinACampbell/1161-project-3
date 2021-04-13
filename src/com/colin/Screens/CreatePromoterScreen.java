@@ -82,7 +82,7 @@ public class CreatePromoterScreen extends JFrame
         cmdClose.addActionListener(buttonListener);
         pnlCommand.add(cmdClose);
 
-        pnlDisplay.setLayout(new GridLayout(14, 1));
+        pnlDisplay.setLayout(new GridLayout(12, 1));
         pnlDisplay.setBackground(Color.pink); 
 		
         pnlCommand.setLayout(new FlowLayout());
