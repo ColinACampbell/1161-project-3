@@ -28,10 +28,10 @@ public class CreatePromoterScreen extends JFrame
     private CreatePromoterScreen thisForm;
     
     // 
-    ArrayList<Promoter> prlist;
     Ministry ministry = new Ministry("HEALTH", 2);
-    ArrayList<Venue> vlist;
-    PromoterService promoterService;
+    ArrayList<Venue> vlist = new ArrayList<>();
+    PromoterService promoterService = new PromoterService();
+    //
     
     public CreatePromoterScreen()
 	{
