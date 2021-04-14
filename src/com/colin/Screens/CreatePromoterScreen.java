@@ -102,7 +102,6 @@ public class CreatePromoterScreen extends JFrame
         add(pnlCommand, BorderLayout.SOUTH);
         
         pack();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 	}
 
