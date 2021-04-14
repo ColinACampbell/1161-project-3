@@ -33,7 +33,7 @@ public class UpdatePromoterScreen extends JFrame
 
     private UpdatePromoterScreen thisForm;
 
-    ArrayList<Promoter> prlist;
+    //ArrayList<Promoter> prlist;
     ArrayList<Venue> vlist;
     Ministry ministry = new Ministry("HEALTH", 2);
     PromoterService promoterService;
@@ -43,7 +43,7 @@ public class UpdatePromoterScreen extends JFrame
         thisForm = this;
         ButtonListener buttonListener = new ButtonListener();
 
-        prlist.add(new Promoter("Pro2","","","", 1000.0, ministry, vlist));
+        //prlist.add(new Promoter("Pro2","","","", 1000.0, ministry, vlist));
 
         setSize(new Dimension(900,600));
        
