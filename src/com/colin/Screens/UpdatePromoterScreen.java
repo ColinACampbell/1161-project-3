@@ -147,7 +147,7 @@ public class UpdatePromoterScreen extends JFrame
 
         public void actionPerformed(ActionEvent event)
         {
-            if(event.getSource() == "Find")
+            if(event.getSource() == cmdFind)
             {
                 try
                 {
@@ -176,7 +176,7 @@ public class UpdatePromoterScreen extends JFrame
                 catch(NumberFormatException nf) {}
             }
 
-            else if(event.getSource() == "Save")
+            else if(event.getSource() == cmdSave)
             {
                 int id = Integer.parseInt(txtID.getText());
                 String name = txtName.getText();
@@ -192,12 +192,12 @@ public class UpdatePromoterScreen extends JFrame
                 thisForm.setVisible(false);
             }
 
-            else if(event.getSource() == "Close")
+            else if(event.getSource() == cmdClose)
             {
                 UpdatePromoterScreen.this.thisForm.setVisible(false);
             }
 
-            else if(event.getSource() == "Cancel")
+            else if(event.getSource() == cmdCancel)
             {
                 pnlFoundDisplay.setVisible(false);
                 pnlFoundCommand.setVisible(false);
