@@ -9,8 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DeletePromoterScreen  extends JPanel {
-    int PREF_W = 700;
-    int PREF_H = 550;
+    //int PREF_W = 700;
+    //int PREF_H = 550;
+
+    int PREF_W = 450;
+    int PREF_H = PREF_W;
 
     protected JFrame frame = new JFrame();
 
@@ -24,6 +27,7 @@ public class DeletePromoterScreen  extends JPanel {
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
+        frame.setBackground(Color.PINK);
     }
 
 
