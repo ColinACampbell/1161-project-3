@@ -1,6 +1,7 @@
 package com.colin.Screens;
 
 import javax.swing.*;
+import javax.swing.JTextField;
 
 import com.colin.Models.*;
 import com.colin.Services.PromoterService;
@@ -28,8 +29,6 @@ public class UpdatePromoterScreen extends JFrame
 
     private JPanel pnlFoundCommand;
     private JPanel pnlFoundDisplay;
-    
-    private JPanel pnlNotFoundDisplay;
 
     private UpdatePromoterScreen thisForm;
 
@@ -45,14 +44,11 @@ public class UpdatePromoterScreen extends JFrame
         pnlCommand = new JPanel();
         pnlFoundDisplay = new JPanel();
         pnlFoundCommand = new JPanel();
-        pnlNotFoundDisplay = new JPanel();
         
-        // each panel's layout
         // pnlDisplay.setLayout(new BorderLayout(1, 2));
         pnlCommand.setLayout(new FlowLayout());
         pnlFoundDisplay.setLayout(new GridLayout(12, 1));
         pnlFoundCommand.setLayout(new FlowLayout());
-        // pnlNotFoundDisplay.setLayout();
 
         // the main panel's display
         pnlDisplay.add(new JLabel("Enter ID:")); 
@@ -69,11 +65,6 @@ public class UpdatePromoterScreen extends JFrame
         pnlCommand.add(cmdClose);
 
         // the found pannel's display
-        pnlFoundDisplay.add(new JLabel("Promoter Found!"));
-
-        // pnlFoundDisplay.add(new JLabel("")); 
-        // pnlFoundDisplay.add(new JLabel("")); 
-
         pnlFoundDisplay.add(new JLabel("New Name:")); 
         txtName = new JTextField(20);
         pnlFoundDisplay.add(txtName);
@@ -114,16 +105,13 @@ public class UpdatePromoterScreen extends JFrame
         cmdCancel.addActionListener(buttonListener);
         pnlFoundCommand.add(cmdCancel);
     
-        // the not found panel's diplay (no command buttons)
-        pnlNotFoundDisplay.add(new JLabel("Promoter Not Found!"));
-        pnlNotFoundDisplay.add(new JLabel("Try Again!"));
-
+        // setting each panel's colour
         pnlDisplay.setBackground(Color.pink); 
         pnlCommand.setBackground(Color.pink); 
         pnlFoundDisplay.setBackground(Color.pink); 
         pnlFoundCommand.setBackground(Color.pink); 
-        pnlNotFoundDisplay.setBackground(Color.pink);
-
+        
+        // each main panel's layout
         add(pnlDisplay, BorderLayout.CENTER);
         add(pnlCommand, BorderLayout.SOUTH);
        
@@ -137,7 +125,6 @@ public class UpdatePromoterScreen extends JFrame
         */
 
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);    
     }
 
@@ -156,21 +143,35 @@ public class UpdatePromoterScreen extends JFrame
                         int pid = Integer.parseInt(txtID.getText());
                         Promoter pr = promoterService.findPromoter(pid);
 
-                        if(pr != null)
+                        if(pr == null)
                         {
+                            txtID.setText("");
+                            txtID.setText("Promoter Not Found! Please try again!");
+                        }    
+                        else
+                        {
+                            // panel with found information
+                            JPanel pnlInfo = new JPanel();
+                            pnlInfo.add(new JLabel("Promoter Found!"));
+                            pnlInfo.add(new JLabel(" "));
+                            pnlInfo.add(new JLabel("Name: "+pr.getName())); 
+                            pnlInfo.add(new JLabel("Budget: $"+pr.getBudget()+"0"));
+                            pnlInfo.add(new JLabel(" "));
+                            pnlInfo.add(new JLabel(" "));
+                            
+                            pnlInfo.setBackground(Color.pink);
+                            pnlInfo.setLayout(new GridLayout(3, 2));
+
                             pnlDisplay.setVisible(false);
                             pnlCommand.setVisible(false);
                             
+                            add(pnlInfo, BorderLayout.NORTH);
                             add(pnlFoundDisplay, BorderLayout.CENTER);
                             add(pnlFoundCommand, BorderLayout.SOUTH);
+                            pnlInfo.setVisible(true);
                             pnlFoundDisplay.setVisible(true);
                             pnlFoundCommand.setVisible(true);
-                        }
-                        else
-                        {
-                            add(pnlNotFoundDisplay, BorderLayout.CENTER);
-                            pnlNotFoundDisplay.setVisible(true);
-                        }     
+                        } 
                     }
                 }
                 catch(NumberFormatException nf) {}
