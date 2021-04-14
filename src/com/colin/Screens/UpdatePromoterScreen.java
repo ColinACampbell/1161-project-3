@@ -31,29 +31,12 @@ public class UpdatePromoterScreen extends JFrame
     private JPanel pnlFoundDisplay;
 
     private UpdatePromoterScreen thisForm;
-/**
-<<<<<<< HEAD
-    //ArrayList<Promoter> prlist;
-    ArrayList<Venue> vlist;
-    Ministry ministry = new Ministry("HEALTH", 2);
-    PromoterService promoterService;
 
-    public UpdatePromoterScreen() // CHANGE
-    {
-        thisForm = this;
-        ButtonListener buttonListener = new ButtonListener();
-
-        //prlist.add(new Promoter("Pro2","","","", 1000.0, ministry, vlist));
-
-        setSize(new Dimension(900,600));
-       
-=======**/
     public UpdatePromoterScreen() 
     {
         thisForm = this;
         ButtonListener buttonListener = new ButtonListener();
-        
-//>>>>>>> ab68fdb714c89fc317725fedac7337e190af2086
+
         setTitle("UPDATE PROMOTER");
         setPreferredSize(new Dimension(450, 400));
 
@@ -151,7 +134,7 @@ public class UpdatePromoterScreen extends JFrame
 
         public void actionPerformed(ActionEvent event)
         {
-            if(event.getSource() == cmdFind)
+            if(event.getSource() == cmdFind) // if the user is finding
             {
                 try
                 {
