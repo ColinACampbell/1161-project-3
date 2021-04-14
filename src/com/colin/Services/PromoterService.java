@@ -50,6 +50,31 @@ public class PromoterService {
         return null;
     }
 
+
+    public ArrayList<Promoter> findPromotersByName(String name)
+    {
+        ArrayList<Promoter> results = new ArrayList<>();
+        for (Promoter promoter : promoters)
+        {
+            if (promoter.getName().contains(name) || promoter.getName().equals(name))
+                results.add(promoter);
+        }
+
+        return results;
+    }
+
+    public ArrayList<Promoter> findPromotersByEmail(String email)
+    {
+        ArrayList<Promoter> results = new ArrayList<>();
+        for (Promoter promoter : promoters)
+        {
+            if (promoter.getEmail().contains(email) || promoter.getName().equals(email))
+                results.add(promoter);
+        }
+
+        return results;
+    }
+
     /**
      * Updates a Promoter's information give his id
      * @param id Id Of Promoter

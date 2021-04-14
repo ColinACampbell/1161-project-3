@@ -6,10 +6,10 @@ import com.colin.Models.Promoter;
 import com.colin.Services.PromoterService;
 
 import javax.swing.*;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -22,8 +22,8 @@ public class ListPromotersScreen extends JFrame {
     private JButton backButton = new JButton("<---");
     private JButton sortByIDButton = new JButton("Sort By ID");
     private JButton sortByBudgetButton = new JButton("Sort By Budget");
-    private JButton searchByIDButton = new JButton("Search By ID");
-    private JTextField searchByIDField = new JFormattedTextField();
+    private JButton searchButton = new JButton("Search");
+    private JTextField searchTextField = new JFormattedTextField();
     DefaultTableModel tableModel = new DefaultTableModel();
 
     private final PromoterService promoterService = new PromoterService();
@@ -32,7 +32,7 @@ public class ListPromotersScreen extends JFrame {
     public ListPromotersScreen()
     {
 
-        searchByIDField.setColumns(20);
+        searchTextField.setColumns(20);
 
         setTitle("Promoters");
         setSize(new Dimension(900,600));
@@ -43,7 +43,7 @@ public class ListPromotersScreen extends JFrame {
 
         // Methods are used to short hand setting up and creating components to reduce repeating code
         JPanel leftFloatPanel = createFloatPanel(FlowLayout.LEFT,backButton);
-        JPanel rightFloatPanel = createFloatPanel(FlowLayout.RIGHT,searchByIDField,searchByIDButton,sortByIDButton,sortByBudgetButton);
+        JPanel rightFloatPanel = createFloatPanel(FlowLayout.RIGHT, searchTextField, searchButton,sortByIDButton,sortByBudgetButton);
         JPanel topBarComponents = createTopBarPanel(leftFloatPanel,rightFloatPanel);
 
         // Add to the top of the screen
@@ -54,8 +54,7 @@ public class ListPromotersScreen extends JFrame {
         JTable table = new JTable(tableModel);
 
         setUpTableModel();
-        //jScrollPane.add(table);
-        //jScrollPane.setPreferredSize(new Dimension(1000,500));
+
         // Add to the bottom of the screen
         add(new JScrollPane(table));
 
@@ -78,23 +77,38 @@ public class ListPromotersScreen extends JFrame {
             initRows(promoters);
         });
 
-        searchByIDButton.addActionListener(e->{
-            clearTable();
-            String idText = searchByIDField.getText();
 
-            if (idText.trim().isEmpty())
+        searchButton.addActionListener(e->{
+            clearTable();
+            String query = searchTextField.getText();
+
+            if (query.trim().isEmpty())
                 initRows(promoters);
             else {
-                Promoter promoter = promoterService.findPromoter(Integer.parseInt(idText));
-                System.out.println(promoter);
+                // if the text field is not empty
+                try {
+                    // test to see if a number was entered
+                    int id = Integer.parseInt(query);
+                    Promoter promoter = promoterService.findPromoter(id);
+                    if (promoter == null)
+                        clearTable();
+                    else {
+                        clearTable();
+                        ArrayList<Promoter> sample = new ArrayList<>();
+                        sample.add(promoter);
+                        initRows(sample); // just show that one promoter if exists
+                    }
+                } catch (NumberFormatException exception)
+                {
+                    ArrayList<Promoter> promoters = null;
+                    // if a text was entered, it must be by name or email
+                    if (query.contains("@")) // find by email
+                        promoters = promoterService.findPromotersByEmail(query);
+                    else // must be by name
+                        promoters = promoterService.findPromotersByName(query);
 
-                if (promoter == null)
-                    clearTable();
-                else {
-                    clearTable();
-                    ArrayList<Promoter> sample = new ArrayList<>();
-                    sample.add(promoter);
-                    initRows(sample); // just show that one promoter if exists
+                    assert promoters != null;
+                    initRows(promoters);
                 }
             }
         });
