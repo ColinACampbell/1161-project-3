@@ -146,7 +146,21 @@ public class UpdatePromoterScreen extends JFrame
                         if(pr == null)
                         {
                             txtID.setText("");
-                            txtID.setText("Promoter Not Found! Please try again!");
+                            String text = "Promoter Not Found! Please Try again!";
+                            txtID.setText(text);
+
+                            txtID.addFocusListener(new FocusListener() {
+
+                                public void focusGained(FocusEvent e) 
+                                {
+                                    txtID.setText("");
+                                }
+                        
+                                public void focusLost(FocusEvent e) 
+                                {
+                                    txtID.setText(text);
+                                }
+                            });
                         }    
                         else
                         {
@@ -207,5 +221,4 @@ public class UpdatePromoterScreen extends JFrame
             }
         }
     }
-
 }
