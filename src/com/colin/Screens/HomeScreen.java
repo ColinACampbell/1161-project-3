@@ -36,7 +36,10 @@ public class HomeScreen extends JFrame {
 
         setLayout(gridLayout);
         for (JPanel panel : appPanels)
+        {
+            panel.setBackground(Color.PINK);
             add(panel);
+        }
 
         setVisible(true);
     }

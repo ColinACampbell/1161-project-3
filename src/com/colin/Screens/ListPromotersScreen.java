@@ -46,6 +46,10 @@ public class ListPromotersScreen extends JFrame {
         JPanel rightFloatPanel = createFloatPanel(FlowLayout.RIGHT, searchTextField, searchButton,sortByIDButton,sortByBudgetButton);
         JPanel topBarComponents = createTopBarPanel(leftFloatPanel,rightFloatPanel);
 
+
+        leftFloatPanel.setBackground(Color.PINK);
+        rightFloatPanel.setBackground(Color.PINK);
+        topBarComponents.setBackground(Color.PINK);
         // Add to the top of the screen
         add(topBarComponents,BorderLayout.PAGE_START);
 

@@ -111,7 +111,7 @@ public class DeletePromoterScreen  extends JPanel {
             notFound.setVisible(false);
             tryAgain.setVisible(false);
 
-            setBackground(Color.MAGENTA);
+            setBackground(Color.pink);
 
         }
 
